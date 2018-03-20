@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" mann: Simple, customisable quick-reference for shell commands """
+""" mann module """
 
 # pylint: disable-msg=E0401; (Undefined variable)
 
@@ -13,6 +13,7 @@ CONFIG_FILE = os.path.expanduser("~/.mannrc")
 
 @click.group()
 def mann():
+	""" mann: Simple, customisable quick-reference for shell commands """
 	pass
 
 
