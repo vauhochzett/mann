@@ -5,24 +5,19 @@
 
 import click
 
+
+def add(context, _, name):
+	raise NotImplementedError()
+	context.exit()
+
+
+def remove(context, _, name):
+	raise NotImplementedError()
+	context.exit()
+
 @click.command()
-@click.option("--add", "-a", 'mode', flag_value="add")
-@click.option("--remove", "-r", 'mode', flag_value="remove")
+@click.option("--add", "-a", callback=add)
+@click.option("--remove", "-r", callback=remove)
 @click.argument("name")
-def main(mode, name):
-	if mode == "add":
-		add(name)
-	elif mode == "remove":
-		remove(name)
-
+def main(name):
 	raise NotImplementedError()
-
-
-def add(name):
-	raise NotImplementedError()
-	exit()
-
-
-def remove(name):
-	raise NotImplementedError()
-	exit()
