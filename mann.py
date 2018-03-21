@@ -88,6 +88,9 @@ def remove(program, command):
 			print("Okay.")
 			break
 
+	if not records[program]:
+		records.pop(program)
+
 	_save_records(records)
 
 
