@@ -20,9 +20,9 @@ def mann():
 
 
 @mann.command()
-@click.argument("program")
+@click.argument("program", default="all")
 def get(program):
-	""" Retrieve stored commands. Use 'all' to get all commands. """
+	""" Retrieve stored commands. """
 
 	records = _load_records()
 
