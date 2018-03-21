@@ -34,7 +34,7 @@ def get(program):
 		print("No commands saved for this program." + ADD_HINT)
 		return
 
-	print(records[program])
+	_print_entries(program, records[program])
 
 
 @mann.command()
@@ -92,6 +92,19 @@ def remove(program, command):
 		records.pop(program)
 
 	_save_records(records)
+
+
+### Pretty printing ###
+
+
+def _print_entries(program, entries):
+	min_width = 10
+	longest_command = max([min_width] + [len(s) for (s, _) in entries])
+	for entry in entries:
+		print("   %s %s | %s" % (program, entry[0].ljust(longest_command), entry[1]))
+
+
+### Record loading and saving ###
 
 
 def _load_records():
