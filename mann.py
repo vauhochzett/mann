@@ -22,12 +22,17 @@ def mann():
 @mann.command()
 @click.argument("program")
 def get(program):
-	""" Retrieve stored commands. """
+	""" Retrieve stored commands. Use 'all' to get all commands. """
 
 	records = _load_records()
 
 	if not records:
 		print(NO_RECORDS_ERROR + ADD_HINT)
+		return
+
+	if program == "all":
+		for key in records:
+			_print_entries(key, records[key])
 		return
 
 	if program not in records:
