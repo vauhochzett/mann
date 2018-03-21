@@ -78,7 +78,7 @@ def remove(program, command):
 
 	if len(to_delete) > 1:
 		print("Ambiguous argument. Found the following entries:")
-		print(to_delete)
+		_print_entries(program, to_delete)
 		return
 
 	for i in range(len(records[program])):
