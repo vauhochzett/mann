@@ -44,7 +44,15 @@ def get(program):
 def add(program, command, text):
 	""" Add a new record. """
 
-	raise NotImplementedError()
+	records = _load_records()
+
+	if program not in records:
+		records[program] = []
+
+	records[program].append((command, text))
+	records[program].sort(key=lambda tup: tup[0])
+
+	_save_records(records)
 
 
 @mann.command()
