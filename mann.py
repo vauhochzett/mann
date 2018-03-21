@@ -9,6 +9,8 @@ import click
 
 
 CONFIG_FILE = os.path.expanduser("~/.mannrc")
+ADD_HINT = " Add with --add/-a."
+NO_RECORDS_ERROR = "No commands have been added yet!"
 
 
 @click.group()
@@ -25,11 +27,11 @@ def get(program):
 	records = _load_records()
 
 	if not records:
-		print("No commands have been added yet! Add some with --add/-a.")
+		print(NO_RECORDS_ERROR + ADD_HINT)
 		return
 
 	if program not in records:
-		print("No commands saved for this program. Add some with --add/-a.")
+		print("No commands saved for this program." + ADD_HINT)
 		return
 
 	print(records[program])
