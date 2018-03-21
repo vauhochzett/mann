@@ -9,7 +9,7 @@ import click
 
 
 CONFIG_FILE = os.path.expanduser("~/.mannrc")
-ADD_HINT = " Add with --add/-a."
+ADD_HINT = " Add with 'add'"
 NO_RECORDS_ERROR = "No commands have been added yet!"
 
 
