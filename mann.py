@@ -46,6 +46,9 @@ def add(program, command, text):
 
 	records = _load_records()
 
+	if not records:
+		records = {}
+
 	if program not in records:
 		records[program] = []
 
