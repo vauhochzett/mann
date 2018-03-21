@@ -1,8 +1,10 @@
+""" mann setup """
+
 from setuptools import setup
 
 setup(
     name='mann',
-    version='0.1',
+    version='0.5',
     py_modules=['mann'],
     install_requires=[
         'Click',
