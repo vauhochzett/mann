@@ -52,6 +52,13 @@ def add(program, command, text):
 	if program not in records:
 		records[program] = []
 
+	conflicting_entries = [(c, t) for (c, t) in records[program]
+		if c.startswith(command) or command.startswith(c)]
+	if conflicting_entries:
+		print("Ambiguous option! Conflicts with:")
+		_print_entries(program, conflicting_entries)
+		return
+
 	records[program].append((command, text))
 	records[program].sort(key=lambda tup: tup[0])
 
