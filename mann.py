@@ -60,3 +60,8 @@ def _load_records():
 
 	with open(CONFIG_FILE, "r") as cfg_file:
 		return json.load(cfg_file)
+
+
+def _save_records(records):
+	with open(CONFIG_FILE, "w") as cfg_file:
+		json.dump(records, cfg_file)
