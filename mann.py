@@ -64,7 +64,31 @@ def add(program, command, text):
 def remove(program, command):
 	""" Remove an existing record. """
 
-	raise NotImplementedError()
+	records = _load_records()
+
+	if not records:
+		print(NO_RECORDS_ERROR)
+		return
+
+	to_delete = [(x, y) for (x, y) in records[program] if x.startswith(command)]
+	if (program not in records
+		or not to_delete):
+		print("No such record found!")
+		return
+
+	if len(to_delete) > 1:
+		print("Ambiguous argument. Found the following entries:")
+		print(to_delete)
+		return
+
+	for i in range(len(records[program])):
+		cmd = records[program][i][0]
+		if cmd.startswith(command):
+			del(records[program][i])
+			print("Okay.")
+			break
+
+	_save_records(records)
 
 
 def _load_records():
