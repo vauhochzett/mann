@@ -64,8 +64,11 @@ def get(args):
 		return
 
 	if program == "all":
-		for key in records:
+		for index, key in enumerate(sorted(records.keys())):
 			_print_entries(key, records[key])
+
+			if index < len(records) - 1:
+				print("")
 		return
 
 	if program not in records:
