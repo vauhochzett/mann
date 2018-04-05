@@ -40,6 +40,10 @@ def mann():
 	remove_parser.add_argument("command")
 	remove_parser.set_defaults(function=remove)
 
+	if len(sys.argv) == 1:
+		parser.print_help()
+		exit()
+
 	args = parser.parse_args()
 
 	args.function(args)
