@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='mann',
-    version='0.5',
+    version='0.6',
     py_modules=['mann'],
     install_requires=[
         'Click',
