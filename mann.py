@@ -3,9 +3,10 @@
 
 # pylint: disable-msg=E0401; (Undefined variable)
 
-import os
+import argparse
 import json
-import click
+import os
+import sys
 
 
 CONFIG_FILE = os.path.expanduser("~/.mannrc")
@@ -13,16 +14,37 @@ ADD_HINT = " Add with 'add'"
 NO_RECORDS_ERROR = "No commands have been added yet!"
 
 
-@click.group()
 def mann():
 	""" mann: Simple, customisable quick-reference for shell commands """
-	pass
+
+	parser = argparse.ArgumentParser(prog="mann", description="Short-hand: 'mann <program>'")
+
+	sub_commands = parser.add_subparsers()
+
+	get_parser = sub_commands.add_parser("get", help="Retrieve stored commands")
+	get_parser.add_argument("program")
+	get_parser.set_defaults(function=get)
+
+	add_parser = sub_commands.add_parser("add", help="Add a new record")
+	add_parser.add_argument("program")
+	add_parser.add_argument("command")
+	add_parser.add_argument("text")
+	add_parser.set_defaults(function=add)
+
+	remove_parser = sub_commands.add_parser("remove", help="Remove an existing record.")
+	remove_parser.add_argument("program")
+	remove_parser.add_argument("command")
+	remove_parser.set_defaults(function=remove)
+
+	args = parser.parse_args()
+
+	args.function(args)
 
 
-@mann.command()
-@click.argument("program", default="all")
-def get(program):
+def get(args):
 	""" Retrieve stored commands. """
+
+	program = args.program
 
 	records = _load_records()
 
@@ -42,12 +64,12 @@ def get(program):
 	_print_entries(program, records[program])
 
 
-@mann.command()
-@click.argument("program")
-@click.argument("command")
-@click.argument("text")
-def add(program, command, text):
+def add(args):
 	""" Add a new record. """
+
+	program = args.program
+	command = args.command
+	text = args.text
 
 	records = _load_records()
 
@@ -70,11 +92,11 @@ def add(program, command, text):
 	_save_records(records)
 
 
-@mann.command()
-@click.argument("program")
-@click.argument("command")
-def remove(program, command):
+def remove(args):
 	""" Remove an existing record. """
+
+	program = args.program
+	command = args.command
 
 	records = _load_records()
 
