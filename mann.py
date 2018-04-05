@@ -19,7 +19,10 @@ def mann():
 
 	# argparse override to allow using "mann <program>"
 	if len(sys.argv) == 2:
-		sys.argv.insert(1, "get")
+		if sys.argv[1] == "get":
+			sys.argv.append("all")
+		else:
+			sys.argv.insert(1, "get")
 
 	parser = argparse.ArgumentParser(prog="mann", description="Short-hand: 'mann <program>'")
 
