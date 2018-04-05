@@ -19,7 +19,9 @@ def mann():
 
 	# argparse override to allow using "mann <program>"
 	if len(sys.argv) == 2:
-		if sys.argv[1] == "get":
+		if sys.argv[1].startswith("-") or sys.argv[1] in ["add", "remove"]:
+			pass
+		elif sys.argv[1] == "get":
 			sys.argv.append("all")
 		else:
 			sys.argv.insert(1, "get")
