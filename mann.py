@@ -168,3 +168,11 @@ def _load_records():
 def _save_records(records):
 	with open(CONFIG_FILE, "w") as cfg_file:
 		json.dump(records, cfg_file)
+
+
+if __name__ == "__main__":
+	try:
+		mann()
+	except KeyboardInterrupt:
+		# Exit code for Ctrl-C
+		sys.exit(130)
