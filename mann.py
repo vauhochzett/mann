@@ -169,7 +169,7 @@ def _load_records():
 
 def _save_records(records):
 	with open(CONFIG_FILE, "w") as cfg_file:
-		json.dump(records, cfg_file)
+		json.dump(records, cfg_file, indent="\t")
 
 
 if __name__ == "__main__":
