@@ -27,6 +27,7 @@ def mann():
 			sys.argv.insert(1, "get")
 
 	parser = argparse.ArgumentParser(prog="mann", description="Short-hand: 'mann <program>'")
+	parser.add_argument("--version", "-v", action="version", version="%(prog)s 0.6.3")
 
 	sub_commands = parser.add_subparsers()
 
