@@ -51,7 +51,7 @@ def mann():
 	# For lack of the "required" argument in add_subparsers()
 	if len(sys.argv) == 1:
 		parser.print_help()
-		exit()
+		sys.exit()
 
 	args.function(args)
 
